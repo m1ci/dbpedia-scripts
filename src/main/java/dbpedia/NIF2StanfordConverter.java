@@ -1,5 +1,5 @@
 
-package cz.ctu.fit.dbpedia.labels.stats;
+package dbpedia;
 
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.rdf.model.Model;
@@ -34,15 +34,15 @@ import org.apache.jena.riot.system.SyntaxLabels;
  */
 public class NIF2StanfordConverter {
     
-    public void convertAll() {
-        String dir = "/Users/Milan/Downloads/db-abstracts-en/";
-        File folder = new File(dir);
+    public void convertAll(String dataLoc) {
+//        String dir = "/Users/Milan/Downloads/db-abstracts-en/";
+        File folder = new File(dataLoc);
         File[] listOfFiles = folder.listFiles();
         for (int i = 0; i < listOfFiles.length; i++) {
             if (listOfFiles[i].isFile()) {
                 if(listOfFiles[i].getName().endsWith(".ttl")) {
                     System.out.println("File " + listOfFiles[i].getName());
-                    convertOneFile(dir+listOfFiles[i].getName());
+                    convertOneFile(dataLoc+listOfFiles[i].getName());
                 }
             }
         }
@@ -54,8 +54,8 @@ public class NIF2StanfordConverter {
             
             
 //            String dir = "/Users/Milan/Downloads/db-abstracts-en/abstracts_en0.ttl";
-            DBpediaOntologyHelper dbp = DBpediaOntologyHelper.getInstance();
-            DBpediaQuery dbQuery = DBpediaQuery.getInstance();
+            DBpediaOntologyHelper dbp = DBpediaOntologyHelper.getInstance(dir);
+            DBpediaQuery dbQuery = DBpediaQuery.getInstance(dir);
             
             Model model = RDFDataMgr.loadModel(dir);
             System.out.println(dir);
@@ -70,7 +70,8 @@ public class NIF2StanfordConverter {
                 try {
                     String docId = ctxtRes.getURI().split("/")[ctxtRes.getURI().split("/").length-2];
                     System.out.println(docId);
-                    out = new PrintWriter(new BufferedWriter(new FileWriter("/Users/Milan/Documents/research/repositories/dbpedia-abstracts-processor/train-data/"+docId, true)));
+                    out = new PrintWriter(new BufferedWriter(new FileWriter(dir+"train-data/"+docId, true)));
+//                    out = new PrintWriter(new BufferedWriter(new FileWriter("/Users/Milan/Documents/research/repositories/dbpedia-abstracts-processor/train-data/"+docId, true)));
                     String ctxtStr = ctxtRes.getProperty(model.getProperty("http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#isString")).getString();
                     StmtIterator entityIter = model.listStatements(null, model.getProperty("http://persistence.uni-leipzig.org/nlp2rdf/ontologies/nif-core#referenceContext"), ctxtRes);
                     while(entityIter.hasNext()) {

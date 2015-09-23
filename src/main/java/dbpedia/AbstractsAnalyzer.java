@@ -1,5 +1,5 @@
 
-package cz.ctu.fit.dbpedia.labels.stats;
+package dbpedia;
 
 import com.hp.hpl.jena.graph.Triple;
 import com.hp.hpl.jena.rdf.model.Model;

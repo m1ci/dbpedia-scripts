@@ -1,5 +1,5 @@
 
-package cz.ctu.fit.dbpedia.labels.stats;
+package dbpedia;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

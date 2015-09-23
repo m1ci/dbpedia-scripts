@@ -1,5 +1,5 @@
 
-package cz.ctu.fit.dbpedia.labels.stats;
+package dbpedia;
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.ModelFactory;
 import com.hp.hpl.jena.rdf.model.RDFNode;
@@ -26,11 +26,11 @@ public class DBpediaQuery {
     private static HDTGraph graph;
     private static Model model;
     
-    public static DBpediaQuery getInstance() {
+    public static DBpediaQuery getInstance(String dataLoc) {
         if(instance == null) {
             try {
                 instance = new DBpediaQuery();
-                hdt = HDTManager.mapIndexedHDT("instance-types_en.hdt", null);
+                hdt = HDTManager.mapIndexedHDT(dataLoc+"instance-types_en.hdt", null);
                 graph = new HDTGraph(hdt);
                 model = ModelFactory.createModelForGraph(graph);
             } catch (IOException ex) {

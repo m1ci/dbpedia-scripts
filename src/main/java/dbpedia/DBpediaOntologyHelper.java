@@ -1,5 +1,5 @@
 
-package cz.ctu.fit.dbpedia.labels.stats;
+package dbpedia;
 
 import com.hp.hpl.jena.rdf.model.Model;
 import com.hp.hpl.jena.rdf.model.Resource;
@@ -15,10 +15,10 @@ public class DBpediaOntologyHelper {
     private static DBpediaOntologyHelper instance = null;
     private static Model model;
     
-    public static DBpediaOntologyHelper getInstance() {
+    public static DBpediaOntologyHelper getInstance(String dataLoc) {
         
         if(instance == null) {
-            model = RDFDataMgr.loadModel("dbpedia_2015-04.owl",org.apache.jena.riot.Lang.RDFXML);
+            model = RDFDataMgr.loadModel(dataLoc+"dbpedia_2015-04.owl",org.apache.jena.riot.Lang.RDFXML);
             System.out.println("ontology loaded..." + model.size());
             instance = new DBpediaOntologyHelper();
         }

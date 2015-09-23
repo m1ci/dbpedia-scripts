@@ -1,4 +1,4 @@
-package cz.ctu.fit.dbpedia.labels.stats;
+package dbpedia;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,7 +17,7 @@ import java.util.logging.Logger;
  * Hello world!
  *
  */
-public class App 
+public class Main 
 {
     public static void main( String[] args )
     {
@@ -42,8 +42,9 @@ public class App
 //            
 //            TrainDataCreator td = new TrainDataCreator();
 //            td.create(hm);
-            
-            new NIF2StanfordConverter().convertAll();
+            String dir = args[0];
+//            String dir = "/Users/Milan/Downloads/db-abstracts-en/";            
+            new NIF2StanfordConverter().convertAll(dir);
 //            DBpediaOntologyHelper helper = DBpediaOntologyHelper.getInstance();
 //            System.out.println(helper.getCoarseGrainedType("http://dbpedia.org/ontology/AdministrativeRegion"));
 //            System.out.println(helper.getCoarseGrainedType("http://dbpedia.org/ontology/PopulatedPlace"));
@@ -57,10 +58,10 @@ public class App
             
             
         } catch (Exception ex) {
-            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         } 
 //catch (IOException ex) {
-//            Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+//            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
 //        }
     }
 }

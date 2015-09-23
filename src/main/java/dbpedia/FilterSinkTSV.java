@@ -1,4 +1,4 @@
-package cz.ctu.fit.dbpedia.labels.stats;
+package dbpedia;
 
 import com.hp.hpl.jena.graph.Node;
 import com.hp.hpl.jena.graph.Triple;
